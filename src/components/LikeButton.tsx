@@ -6,9 +6,9 @@ type LikeButtonProps = {
   likes: number;
 };
 const LikeButton: FC<LikeButtonProps> = ({ postId, likes }) => {
-  const { mutate: likePost } = useLikePost(postId);
+  // const { mutate: likePost } = useLikePost(postId);
 
-  return <button onClick={() => likePost({ postId })}>Like ({likes})</button>;
+  return <button>Like ({likes})</button>;
 };
 
 export default LikeButton;

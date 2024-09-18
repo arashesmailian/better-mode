@@ -1,7 +1,7 @@
 import PostGallery from "../components/PostGallery";
 
 const Home = () => (
-  <div className="home">
+  <div>
     <PostGallery />
   </div>
 );
