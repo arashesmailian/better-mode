@@ -1,24 +1,24 @@
 import { useParams } from "react-router-dom";
-// import { usePost } from "../hooks/usePost";
+import { usePost } from "../hooks/usePost";
 import LikeButton from "./LikeButton";
-import type { TPost } from "../types";
+import { formatDate } from "../utils/formatDate";
 
 const PostDetails = () => {
-  const { id } = useParams();
-  const posts: TPost[] = [
-    { id: "1", title: "Post 1", content: "Content 1", like: 1 },
-    { id: "2", title: "Post 2", content: "Content 2", like: 2 },
-    { id: "3", title: "Post 3", content: "Content 3", like: 3 },
-    { id: "4", title: "Post 4", content: "Content 4", like: 4 },
-  ];
-  const post = posts.filter((post) => post.id === id)[0];
-  // const { data: post } = usePost(Number(id)) as unknown as { title: string; content: string; id: number; likes: number };
+  const { id } = useParams<{ id: string }>();
+  const { post, loading, error } = usePost(id);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+  if (!post) return <p>Post not found</p>;
 
   return (
     <div className="px-6 py-4">
-      <div className="font-bold text-xl mb-2 text-black">{post.title}</div>
-      <p className="text-gray-700 text-base">{post.content}</p>
-      <LikeButton postId={post.id} likes={post.like} />
+      <div className="font-bold text-xl mb-2 text-black">
+        {post.title}
+        <p>{formatDate(post.createdAt)}</p>
+      </div>
+      <p className="text-gray-700 text-base">{post.textContent}</p>
+      <LikeButton postId={post.id} likes={post.positiveReactionsCount} />
     </div>
   );
 };

@@ -1,20 +1,27 @@
-import { useQuery } from "@tanstack/react-query";
-import graphqlClient from "../services/graphqlClient";
+import { gql, useQuery } from "@apollo/client";
 
-const GET_POST = `
-  query GetPost($id: ID!) {
-    post(id: $id) {
+const GET_POST = gql`
+  query GetPost($postId: ID!) {
+    getPost(postId: $postId) {
+      description
+      followersCount
       id
+      positiveReactionsCount
+      textContent
       title
-      content
-      likes
+      createdAt
     }
   }
 `;
 
-export const usePost = (id: number) => {
-  return useQuery({
-    queryKey: ["post", id],
-    queryFn: () => graphqlClient(GET_POST, { id }),
+export const usePost = (postId: string) => {
+  const { data, loading, error } = useQuery(GET_POST, {
+    variables: { postId },
   });
+
+  return {
+    post: data?.getPost,
+    loading,
+    error,
+  };
 };
