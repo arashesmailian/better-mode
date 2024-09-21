@@ -3,19 +3,28 @@ import { gql, useQuery } from "@apollo/client";
 const GET_POST = gql`
   query GetPost($postId: ID!) {
     getPost(postId: $postId) {
+      createdAt
       description
-      followersCount
-      id
+      positiveReactions
       positiveReactionsCount
+      reactionsCount
+      slug
+      status
       textContent
       title
-      createdAt
+      updatedAt
+      url
+      id
+      tags {
+        title
+        slug
+      }
     }
   }
 `;
 
 export const usePost = (postId: string) => {
-  const { data, loading, error } = useQuery(GET_POST, {
+  const { data, loading, error, refetch } = useQuery(GET_POST, {
     variables: { postId },
   });
 
@@ -23,5 +32,6 @@ export const usePost = (postId: string) => {
     post: data?.getPost,
     loading,
     error,
+    refetch,
   };
 };

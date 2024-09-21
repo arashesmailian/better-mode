@@ -28,27 +28,27 @@ const GET_POSTS = gql`
 const usePosts = () => {
   const [posts, setPosts] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
-  // const [isFetchingMore, setIsFetchingMore] = useState(false);
-  // const isFetchingMoreRef = useRef(false);
 
   const { data, loading, error, fetchMore } = useQuery(GET_POSTS, {
-    variables: { limit: 2, offset: 0 },
+    variables: { limit: 5, offset: 0 },
     notifyOnNetworkStatusChange: true,
   });
 
   useEffect(() => {
     if (data) {
       const newPosts = data.getPosts.nodes;
-      setPosts((prevPosts) => [...prevPosts, ...newPosts]);
+      setPosts([...newPosts]);
       setTotalCount(data.getPosts.totalCount);
     }
   }, [data]);
 
   const loadMorePosts = () => {
+    console.log(posts.length);
+
     fetchMore({
       variables: {
-        limit: 2,
-        offset: posts.length + 2,
+        limit: 5,
+        offset: posts.length,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
         const newPosts = [
