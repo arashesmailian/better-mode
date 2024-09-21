@@ -4,8 +4,6 @@ import usePosts from "../hooks/usePosts";
 const PostGallery = () => {
   const { posts, hasNextPage, loading, error, loadMorePosts } = usePosts();
 
-  console.log(posts);
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 

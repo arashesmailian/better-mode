@@ -6,7 +6,6 @@ import { formatDate } from "../utils/formatDate";
 const PostDetails = () => {
   const { id } = useParams<{ id: string }>();
   const { post, loading, error } = usePost(id);
-  console.log(post);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;

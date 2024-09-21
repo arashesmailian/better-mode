@@ -210,9 +210,6 @@ describe("usePosts hook", () => {
 
     // Check the updated state after data is loaded
     expect(result.current.posts).toHaveLength(5);
-    // expect(result.current.posts[0].title).toBe(
-    //   "What Would You Like to See Here?"
-    // );
     expect(result.current.hasNextPage).toBe(true);
   });
 
@@ -238,9 +235,6 @@ describe("usePosts hook", () => {
 
     // Check that the new post is added
     expect(result.current.posts).toHaveLength(5);
-    // expect(result.current.posts[2].title).toBe(
-    //   "Code Marathon 2024: Innovate for Impact"
-    // );
     expect(result.current.hasNextPage).toBe(true);
   });
 
@@ -265,9 +259,6 @@ describe("usePosts hook", () => {
 
     // Check that the final posts are added and hasNextPage is false
     expect(result.current.posts).toHaveLength(5); // 2 (initial) + 1 + 4 (last call)
-    // expect(result.current.posts[6].title).toBe(
-    //   "Building a resilient system: Our journey to observability"
-    // );
     expect(result.current.hasNextPage).toBe(true); // End of pagination
   });
 });

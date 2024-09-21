@@ -31,7 +31,6 @@ export const useReaction = () => {
       reaction: "love",
       overrideSingleChoiceReactions: true,
     };
-    console.log(input);
 
     return addReactionMutation({
       variables: { postId, input },
