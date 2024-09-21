@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 
-const GET_POST = gql`
+export const GET_POST = gql`
   query GetPost($postId: ID!) {
     getPost(postId: $postId) {
       createdAt

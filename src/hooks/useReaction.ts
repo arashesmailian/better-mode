@@ -1,6 +1,6 @@
 import { gql, useMutation } from "@apollo/client";
 
-const ADD_REACTION = gql`
+export const ADD_REACTION = gql`
   mutation addReaction($postId: ID!, $input: AddReactionInput!) {
     addReaction(input: $input, postId: $postId) {
       status
@@ -8,7 +8,7 @@ const ADD_REACTION = gql`
   }
 `;
 
-const REMOVE_REACTION = gql`
+export const REMOVE_REACTION = gql`
   mutation removeReaction($postId: ID!, $reaction: String!) {
     removeReaction(reaction: $reaction, postId: $postId) {
       status

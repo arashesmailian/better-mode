@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { useEffect, useState } from "react";
 
-const GET_POSTS = gql`
+export const GET_POSTS = gql`
   query GetPosts($limit: Int!, $offset: Int) {
     getPosts(limit: $limit, offset: $offset) {
       totalCount

@@ -1,6 +1,10 @@
-// src/utils/formatDate.ts
 export const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) {
+    return "Invalid Date";
+  }
+  
   const day = String(date.getDate()).padStart(2, "0");
   const monthNames = [
     "January",
